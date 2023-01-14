@@ -20,6 +20,8 @@ dependencies {
 	implementation "org.springframework.security:spring-security-taglibs"
 	implementation "org.apache.tomcat:tomcat-jasper:9.0.43"
 	implementation "javax.servlet:jstl"
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
 	implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
 	implementation "org.springframework.boot:spring-boot-starter-security"
