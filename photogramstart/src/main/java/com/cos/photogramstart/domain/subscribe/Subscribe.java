@@ -1,4 +1,4 @@
-package com.cos.photogramstart.domain.User.subscribe;
+package com.cos.photogramstart.domain.subscribe;
 
 import com.cos.photogramstart.domain.User.User;
 import lombok.AllArgsConstructor;
