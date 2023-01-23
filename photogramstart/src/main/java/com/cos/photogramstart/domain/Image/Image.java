@@ -1,6 +1,7 @@
 package com.cos.photogramstart.domain.Image;
 
 import com.cos.photogramstart.domain.User.User;
+import com.cos.photogramstart.domain.likes.Likes;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Data
@@ -28,6 +30,15 @@ public class Image {
     private User user;
 
     // 이미지 좋아요
+    @JsonIgnoreProperties({"image"})
+    @OneToMany(mappedBy = "image")
+    private List<Likes> likes;
+
+    @Transient  //DB에 컬럼이 만들어지지 않는다.
+    private boolean likeState;
+
+    @Transient
+    private int likeCount;
 
     // 댓글
 
