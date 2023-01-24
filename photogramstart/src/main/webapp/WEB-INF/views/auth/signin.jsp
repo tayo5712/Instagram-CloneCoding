@@ -46,9 +46,14 @@
                                 <span>Facebook으로 로그인</span>
                             </button>
                         </div>
+
+                        <div class="login__facebook">
+                            <button onclick="javascript:location.href='https://kauth.kakao.com/oauth/authorize?client_id=453a3dc07a4c653e73d7beeeb7544921&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code'">
+                                <img src="/images/kakao_login_button.png" alt="">
+                            </button>
+                        </div>
                         <!-- Oauth 소셜로그인end -->
                     </div>
-
                     <!--계정이 없으신가요?-->
                     <div class="login__register">
                         <span>계정이 없으신가요?</span>
