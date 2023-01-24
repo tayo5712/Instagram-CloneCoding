@@ -24,7 +24,7 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다.
     private Long id;
 
-    @Column(length = 20, unique = true, nullable = false)
+    @Column(length = 100, unique = true, nullable = false) // OAuth2 로그인을 위해 칼럼 늘리기
     private String username;
 
     @Column(nullable = false)
@@ -63,4 +63,21 @@ public class User {
         this.createDate = LocalDateTime.now();
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", website='" + website + '\'' +
+                ", bio='" + bio + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", role='" + role + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
