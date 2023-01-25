@@ -3,6 +3,7 @@ package com.cos.photogramstart.config.oauth;
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.domain.User.User;
 import com.cos.photogramstart.domain.User.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -11,9 +12,9 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Map;
 import java.util.UUID;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class OAuth2DetailsService extends DefaultOAuth2UserService {
@@ -22,19 +23,28 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-//        System.out.println("OAuth2 서비스 탐");
-        OAuth2User oAuth2User = super.loadUser(userRequest);
-//        System.out.println(oAuth2User.getAttributes());
+        System.out.println("=============== OAuth2서비스 ==================");
+        System.out.println(userRequest.getClientRegistration().getRegistrationId());
 
-        Map<String, Object> userInfo = oAuth2User.getAttributes();
-        String name = (String) userInfo.get("name");
-        String email = (String) userInfo.get("email");
-        String username = "facebook_" + (String) userInfo.get("id");
+        OAuth2User oAuth2User = super.loadUser(userRequest);
+//        Map<String, Object> userInfo = oAuth2User.getAttributes();
+        OAuth2UserInfo oAuth2UserInfo = null;
+        if(userRequest.getClientRegistration().getRegistrationId().equals("facebook")){
+            log.info("페이스북 로그인 요청");
+            oAuth2UserInfo = new FacebookUserInfo(oAuth2User.getAttributes());
+        } else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
+            log.info("카카오톡 로그인 요청");
+            oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+        }
+
+        String username = oAuth2UserInfo.getProvider() + oAuth2UserInfo.getUsername();
         String password = new BCryptPasswordEncoder().encode(UUID.randomUUID().toString());
+        String email = oAuth2UserInfo.getEmail();
+        String name = oAuth2UserInfo.getName();
 
         User userEntity = userRepository.findByUsername(username);
 
-        if (userEntity == null) { // 페이스북 최초 로그인
+        if (userEntity == null) { // 최초 로그인
             User user = User.builder()
                     .username(username)
                     .password(password)

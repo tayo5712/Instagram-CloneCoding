@@ -25,6 +25,5 @@ public class PrincipalDetailsService implements UserDetailsService {
         } else {
             return new PrincipalDetails(userEntity);
         }
-
     }
 }

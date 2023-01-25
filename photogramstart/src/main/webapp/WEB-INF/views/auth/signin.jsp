@@ -47,9 +47,15 @@
                             </button>
                         </div>
 
-                        <div class="login__facebook">
-                            <button onclick="javascript:location.href='https://kauth.kakao.com/oauth/authorize?client_id=453a3dc07a4c653e73d7beeeb7544921&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code'">
+                        <div class="login__kakao">
+                            <button onclick="javascript:location.href='/oauth2/authorization/kakao'">
                                 <img src="/images/kakao_login_button.png" alt="">
+                            </button>
+                        </div>
+
+                        <div class="login__naver">
+                            <button onclick="javascript:location.href='/oauth2/authorization/naver'">
+                                <img src="/images/naver_login_button.png" alt="" style="width:183px; height:45px;">
                             </button>
                         </div>
                         <!-- Oauth 소셜로그인end -->
