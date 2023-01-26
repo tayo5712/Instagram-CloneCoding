@@ -37,7 +37,7 @@
 	<header class="header">
 		<div class="container">
 			<a href="/" class="logo">
-				<img src="/images/logo.jpg" alt="">
+				<img src="/images/logo.png" alt="">
 			</a>
 			<nav class="navi">
 				<ul class="navi-list">

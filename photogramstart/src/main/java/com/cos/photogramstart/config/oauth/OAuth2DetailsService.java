@@ -3,6 +3,7 @@ package com.cos.photogramstart.config.oauth;
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.domain.User.User;
 import com.cos.photogramstart.domain.User.UserRepository;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Slf4j
@@ -25,16 +27,27 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         System.out.println("=============== OAuth2서비스 ==================");
         System.out.println(userRequest.getClientRegistration().getRegistrationId());
-
         OAuth2User oAuth2User = super.loadUser(userRequest);
-//        Map<String, Object> userInfo = oAuth2User.getAttributes();
         OAuth2UserInfo oAuth2UserInfo = null;
         if(userRequest.getClientRegistration().getRegistrationId().equals("facebook")){
             log.info("페이스북 로그인 요청");
             oAuth2UserInfo = new FacebookUserInfo(oAuth2User.getAttributes());
+            System.out.println(oAuth2User.getAttributes());
         } else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
             log.info("카카오톡 로그인 요청");
             oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+            System.out.println(oAuth2User.getAttributes());
+        } else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
+            log.info("네이버 로그인 요청");
+            oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
+            System.out.println(oAuth2User.getAttributes().get("response"));
+            System.out.println(oAuth2User.getAttributes());
+            System.out.println(oAuth2User);
+            System.out.println("----------------");
+        } else if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
+            log.info("구글 로그인 요청");
+            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+            System.out.println(oAuth2User.getAttributes());
         }
 
         String username = oAuth2UserInfo.getProvider() + oAuth2UserInfo.getUsername();

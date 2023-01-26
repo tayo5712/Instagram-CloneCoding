@@ -21,7 +21,7 @@
                 <article class="login__form__container">
                     <!--로그인 폼-->
                     <div class="login__form">
-                        <h1><img src="/images/logo.jpg" alt=""></h1>
+                        <h1><img src="/images/logo.png" alt=""></h1>
 
                         <!--로그인 인풋-->
                         <form class="login__input" action="/auth/signin" method="POST">
@@ -42,20 +42,25 @@
                         <!-- Oauth 소셜로그인 -->
                         <div class="login__facebook">
                             <button onclick="javascript:location.href='/oauth2/authorization/facebook'">
-                                <i class="fab fa-facebook-square"></i>
-                                <span>Facebook으로 로그인</span>
+                                <img src="/images/facebook_login_button.png" alt="" style="width:183px; height:45px;">
                             </button>
                         </div>
 
                         <div class="login__kakao">
                             <button onclick="javascript:location.href='/oauth2/authorization/kakao'">
-                                <img src="/images/kakao_login_button.png" alt="">
+                                <img src="/images/kakao_login_button.png" alt="" style="width:183px; height:45px;">
                             </button>
                         </div>
 
                         <div class="login__naver">
                             <button onclick="javascript:location.href='/oauth2/authorization/naver'">
                                 <img src="/images/naver_login_button.png" alt="" style="width:183px; height:45px;">
+                            </button>
+                        </div>
+
+                        <div class="login__google">
+                            <button onclick="javascript:location.href='/oauth2/authorization/google'">
+                                <img src="/images/google_login_button.png" alt="" style="width:183px; height:45px;">
                             </button>
                         </div>
                         <!-- Oauth 소셜로그인end -->

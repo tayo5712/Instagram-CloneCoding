@@ -45,8 +45,8 @@ spring:
       client:
         registration:
           facebook:
-            client-id: 885796725951474
-            client-secret: 7bbdcf14ecfc6b89f353de2200b00a3d
+            client-id: 1604595546626852
+            client-secret: 594b567e30d01b519e02b0e27aabdc5d
             scope:
               - public_profile
               - email
@@ -62,14 +62,21 @@ spring:
               - account_email
 
           naver:
-            clientId: lQFX_VyB3ggDJUW9bdKy
-            client-secret: ubesljBWYN
+            clientId: nJobbH3wiLmoP40I__8M
+            client-secret: 9ZF9UQJ5H7
             redirect-uri: http://localhost:8080/login/oauth2/code/naver
             authorization-grant-type: authorization_code
             scope:
               - name
               - email
             client-name: Naver
+
+          google:
+            client-id: 222103589647-7d36o8r9e2g08t02m2r7rmbq1jn8p1of.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
 
         provider:
           kakao:

@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @RequiredArgsConstructor
 @EnableWebSecurity // 해당 파일로 시큐리티를 활성화
-@Configuration // IoC
+@Configuration // IoC 등록
 public class SecurityConfig {
 
     private final OAuth2DetailsService oAuth2DetailsService;
@@ -23,7 +23,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // super 삭제 ( 기존 시큐리티 기능 삭제 )
+        // super 삭제 ( 기존 시큐리티 기능 비활성화 )
         http.csrf().disable(); // csrf 토큰 비활성화
         http.authorizeRequests()
                 .antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**", "/api/**").authenticated()

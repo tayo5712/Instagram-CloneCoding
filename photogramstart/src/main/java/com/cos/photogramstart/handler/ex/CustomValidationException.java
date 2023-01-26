@@ -10,7 +10,7 @@ public class CustomValidationException extends RuntimeException {
     private Map<String, String> errorMap;
 
     public CustomValidationException(String message, Map<String, String> errorMap) {
-        super(message);
+        super(message); // 부모한테 메세지 던짐
         this.errorMap = errorMap;
     }
 

@@ -19,7 +19,8 @@ import java.nio.file.Paths;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-@RequiredArgsConstructor
+// final 필드를 DI할때 사용
+@RequiredArgsConstructor // final이 걸려있는 모든 애들 생성자 생성
 @Service
 public class UserService {
 
