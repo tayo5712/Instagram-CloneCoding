@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class PrincipalDetailsService implements UserDetailsService {
+public class PrincipalDetailsService implements UserDetailsService { // 프린시팔이 유저디테일 덮어씌워버림
 
     private final UserRepository userRepository;
 

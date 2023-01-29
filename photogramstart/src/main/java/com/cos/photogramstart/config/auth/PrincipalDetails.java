@@ -31,7 +31,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         return attributes;
     }
 
-    // 권한 :  한개가 아닐 수 있음 (3개 이상의 권한)
+    // 권한 :  한개가 아닐 수 있음
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collector = new ArrayList<>();
