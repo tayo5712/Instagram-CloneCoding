@@ -24,10 +24,10 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
     private final UserRepository userRepository;
 
     @Override
-    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {    // userRequest에 회원정보가 담겨서 옴
         System.out.println("=============== OAuth2서비스 ==================");
         System.out.println(userRequest.getClientRegistration().getRegistrationId());
-        OAuth2User oAuth2User = super.loadUser(userRequest);
+        OAuth2User oAuth2User = super.loadUser(userRequest);    // 응답정보를 파싱해서 줌
         OAuth2UserInfo oAuth2UserInfo = null;
         if(userRequest.getClientRegistration().getRegistrationId().equals("facebook")){
             log.info("페이스북 로그인 요청");
@@ -35,8 +35,8 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             System.out.println(oAuth2User.getAttributes());
         } else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
             log.info("카카오톡 로그인 요청");
-            oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
-            System.out.println(oAuth2User.getAttributes());
+            oAuth2UserInfo =    new KakaoUserInfo(oAuth2User.getAttributes());
+            System.out.println(oAuth2User.getAttributes())  ;
         } else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
             log.info("네이버 로그인 요청");
             oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
@@ -52,6 +52,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
         String username = oAuth2UserInfo.getProvider() + oAuth2UserInfo.getUsername();
         String password = new BCryptPasswordEncoder().encode(UUID.randomUUID().toString());
+        // OAuth2DetailsService 보다 Securityconfig가 메모리에 늦게 떠서 사이클에 문제가 생길 수 있기 때문에 new해서 만들어줌
         String email = oAuth2UserInfo.getEmail();
         String name = oAuth2UserInfo.getName();
 
@@ -65,7 +66,6 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
                     .name(name)
                     .role("ROLE_USER")
                     .build();
-
             return new PrincipalDetails(userRepository.save(user), oAuth2User.getAttributes()); // 소설로그인인지 확인할 필요 없으면 oAuth2User.getAttributes() 안넣어도 됨
         } else {
             return new PrincipalDetails(userEntity, oAuth2User.getAttributes()); // 소설로그인인지 확인할 필요 없으면 oAuth2User.getAttributes() 안넣어도 됨

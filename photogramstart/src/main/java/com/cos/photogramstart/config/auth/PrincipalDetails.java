@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Map;
 
 @Data
-public class PrincipalDetails implements UserDetails, OAuth2User {
+public class PrincipalDetails implements UserDetails, OAuth2User { // Form 로그인이랑 OAuth2 로그인을 principalDetails 타입으로 세션 만들어줌
 
     private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
     public PrincipalDetails(User user, Map<String, Object> attributes) {
         this.user = user;
-    }
+    }   // 소셜로그인시 attributes 같이 넘겨줘서 확인 가능
 
     @Override
     public Map<String, Object> getAttributes() {
