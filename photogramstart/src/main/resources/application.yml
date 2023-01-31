@@ -52,23 +52,25 @@ spring:
               - email
 
           kakao:
-            client-id: 453a3dc07a4c653e73d7beeeb7544921
+            client-id: a3270dee7847209f8f9e19f74308aa18
             redirect-uri: http://localhost:8080/login/oauth2/code/kakao
             authorization-grant-type: authorization_code
             client-authentication-method: POST
             client-name: Kakao
             scope:
               - profile_nickname
+              - profile_image
               - account_email
 
           naver:
-            clientId: nJobbH3wiLmoP40I__8M
-            client-secret: 9ZF9UQJ5H7
+            clientId: lQFX_VyB3ggDJUW9bdKy
+            client-secret: ubesljBWYN
             redirect-uri: http://localhost:8080/login/oauth2/code/naver
             authorization-grant-type: authorization_code
             scope:
               - name
               - email
+              - profile_image
             client-name: Naver
 
           google:

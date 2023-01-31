@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/auth/signin")     // POST -> 스프링 시큐리티가 로그인 프로세스 진행
                 .defaultSuccessUrl("/")
                 .and()
-                .oauth2Login() // form로그인도 하는데, oauth2로그인도 할꺼야!!
+                .oauth2Login() // form로그인도 하는데, oauth2로그인도 함.
                 .userInfoEndpoint() // oauth2로그인을 하면 최종응답을 회원정보를 바로 받을 수 있다.
                 .userService(oAuth2DetailsService);;
 
