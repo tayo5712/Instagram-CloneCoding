@@ -38,8 +38,8 @@ public class ImageController {
     }
 
     @PostMapping("/image")
-    public String imageUplad(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-
+    public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        System.out.println(imageUploadDto);
         if (imageUploadDto.getFile().isEmpty()) {
             throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
         }
